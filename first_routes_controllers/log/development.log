@@ -531,3 +531,201 @@ Completed 400 Bad Request in 136ms (ActiveRecord: 0.0ms)
 ActionController::ParameterMissing - param is missing or the value is empty: user:
   app/controllers/users_controller.rb:17:in `create'
 
+Started POST "/users" for ::1 at 2021-03-31 17:22:03 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/syldys/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.5/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as */*
+  Parameters: {"users"=>{"name"=>"ara", "email"=>"ara@gmail.com"}}
+Completed 400 Bad Request in 8ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/users_controller.rb:25:in `create'
+
+Started POST "/users" for ::1 at 2021-03-31 17:22:18 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"ara"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:26
+  [1m[36mUser Create (3.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "ara"], ["created_at", "2021-03-31 21:22:18.432150"], ["updated_at", "2021-03-31 21:22:18.432150"]]
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:26
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 11.8ms)
+
+
+
+ActiveRecord::NotNullViolation - PG::NotNullViolation: ERROR:  null value in column "email" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (1, ara, null, 2021-03-31 21:22:18.43215, 2021-03-31 21:22:18.43215).
+: INSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id":
+  app/controllers/users_controller.rb:26:in `create'
+
+Started POST "/users" for ::1 at 2021-03-31 17:22:26 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"ara", "email"=>"ara@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:26
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "ara"], ["email", "ara@gmail.com"], ["created_at", "2021-03-31 21:22:26.376376"], ["updated_at", "2021-03-31 21:22:26.376376"]]
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:26
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/users" for ::1 at 2021-03-31 17:23:45 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"ara", "email"=>"ara@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:26
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "ara"], ["email", "ara@gmail.com"], ["created_at", "2021-03-31 21:23:45.601798"], ["updated_at", "2021-03-31 21:23:45.601798"]]
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:26
+Completed 200 OK in 15ms (Views: 0.5ms | ActiveRecord: 5.7ms)
+
+
+Started PATCH "/users/2" for ::1 at 2021-03-31 17:26:17 -0400
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"name"=>"miche", "email"=>"MR@gmail.com"}, "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "name" = $1, "email" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["name", "miche"], ["email", "MR@gmail.com"], ["updated_at", "2021-03-31 21:26:17.287533"], ["id", 2]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:35
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 21ms (ActiveRecord: 7.5ms)
+
+
+Started GET "/users/2" for ::1 at 2021-03-31 17:26:17 -0400
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+Completed 200 OK in 20267ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started PUT "/users/2" for ::1 at 2021-03-31 17:26:57 -0400
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"name"=>"miche", "email"=>"MR@gmail.com"}, "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:35
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 15ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/users/2" for ::1 at 2021-03-31 17:26:58 -0400
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2?name=miche" for ::1 at 2021-03-31 17:28:00 -0400
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"name"=>"miche", "email"=>"MR@gmail.com"}, "name"=>"miche", "id"=>"2"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/" for ::1 at 2021-03-31 17:28:59 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"name"=>"", "email"=>"MR@gmail.com"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started DELETE "/users/2" for ::1 at 2021-03-31 17:30:14 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"name"=>"", "email"=>"MR@gmail.com"}, "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:41
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:41
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:41
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 4ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/users/2" for ::1 at 2021-03-31 17:30:14 -0400
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2021-03-31 17:30:24 -0400
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"name"=>"", "email"=>"MR@gmail.com"}, "id"=>"2"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started POST "/users/1" for ::1 at 2021-03-31 17:31:07 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/users/1"):
+  
+actionpack (5.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.5) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.5) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.5) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.5) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/users" for ::1 at 2021-03-31 17:31:23 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"miche", "email"=>"miche@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:26
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "miche"], ["email", "miche@gmail.com"], ["created_at", "2021-03-31 21:31:23.200768"], ["updated_at", "2021-03-31 21:31:23.200768"]]
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:26
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/users?name" for ::1 at 2021-03-31 17:32:11 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"name"=>"miche", "email"=>"miche@gmail.com"}, "name"=>nil}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2021-03-31 17:32:50 -0400
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"name"=>"miche", "email"=>"miche@gmail.com"}, "id"=>"1"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1?name=sy" for ::1 at 2021-03-31 17:33:02 -0400
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"name"=>"miche", "email"=>"miche@gmail.com"}, "name"=>"sy", "id"=>"1"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
