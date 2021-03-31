@@ -1,21 +1,21 @@
 class UsersController < ApplicationController
 
     def index 
-        render plain: 'This is an index'
-        debugger
+        # render plain: 'This is an index'
+        render json: params
         # users = User.all
         # render json: users
     end
 
-    # def show
-    #     user = User.find(params[:id])
-    #     render json: user
-    # end
+    def show
+        # user = User.find(params[:id])
+        render json: params
+        debugger
+    end
 
     def create
         # user = User.new(user_params)
         render json: params
-        debugger
         # return render json: user if user.save
         # render json: user.errors.full_messages, status: 422
     end
