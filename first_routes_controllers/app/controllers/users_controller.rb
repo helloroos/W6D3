@@ -14,9 +14,10 @@ class UsersController < ApplicationController
     end
 
     def create
-        # user = User.new(user_params)
-        render json: params
-        # return render json: user if user.save
+        user = User.new(params.require(:user).permit(:name, :email))
+        user.save!
+        render json: user
+        
         # render json: user.errors.full_messages, status: 422
     end
 
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
     # end
 
     # def user_params
-    #     params.require(:user).permit(:body)
+    #     params.require(:user).permit(:name, :email)
     # end
 
 end
