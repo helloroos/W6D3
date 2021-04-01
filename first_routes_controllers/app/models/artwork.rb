@@ -22,6 +22,6 @@ class Artwork < ApplicationRecord
         class_name: :ArtworkShare
 
     has_many :shared_viewers,
-        through: :viewers,
-        source: :artwork
+        through: :shares,
+        source: :viewer
 end

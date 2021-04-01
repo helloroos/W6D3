@@ -9,8 +9,4 @@ class ArtworkShare < ApplicationRecord
         primary_key: :id,
         foreign_key: :artwork_id,
         class_name: :Artwork
-
-    has_one :viewer,
-        through: :artwork,
-        source: :viewer
 end
