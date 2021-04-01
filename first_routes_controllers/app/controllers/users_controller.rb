@@ -1,24 +1,14 @@
 class UsersController < ApplicationController
 
     def index 
-        # render plain: 'This is an index'
         users = User.all
         render json: users
     end
 
     def show
-        # user = User.find(params[:id])
-        render json: params
-        # debugger
+        user = User.find(params[:id])
+        render json: user
     end
-
-    # def create
-    #     user = User.new(params.require(:user).permit(:name, :email))
-    #     user.save!
-    #     render json: user
-        
-    #     # render json: user.errors.full_messages, status: 422
-    # end
 
     def create
       user = User.new(user_params)
@@ -41,8 +31,10 @@ class UsersController < ApplicationController
         redirect_to user_url
     end
 
+    protected
+
     def user_params
-        params.require(:user).permit(:name, :email)
+        params.require(:user).permit(:username)
     end
 
 end
