@@ -1,7 +1,7 @@
 class ArtworkSharesController < ApplicationController
 
     def create
-      share = Artwork.new(artwork_shares_params)
+      share = ArtworkShare.new(artwork_shares_params)
       if share.save
         render json: share
       else
@@ -10,7 +10,7 @@ class ArtworkSharesController < ApplicationController
     end
 
     def destroy
-        share = Artwork.find(params[:id])
+        share = ArtworkShare.find(params[:id])
         share.destroy 
         redirect_to artworks_url
     end
@@ -18,7 +18,7 @@ class ArtworkSharesController < ApplicationController
     protected
 
     def artwork_shares_params
-        params.require(:artwork).permit(:username)
+        params.require(:artwork_share).permit(:artist_id, :viewer_id)
     end
 
 end
